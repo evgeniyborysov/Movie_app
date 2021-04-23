@@ -9,6 +9,9 @@ const main = document.querySelector('main');
 // const test = 'https://api.themoviedb.org/3/find/{external_id}?api_key=1c72b657d9a077a9e86fd0a692d417c2&language=en-US&external_source=615457';
 const test = 'http://api.themoviedb.org/3/movie/615457?api_key=1c72b657d9a077a9e86fd0a692d417c2';
 
+const pages = document.querySelector('.pages');
+// const buttons = document.querySelectorAll('button');
+
 async function getMovies(url) {
     const response = await fetch(url);
     const data = await response.json();
@@ -45,22 +48,21 @@ function showMovies(movies) {
 }
 
 getMovies(API_URL);
-// getMovies(test);
 
-const button = document.getElementById("button");
-button.onclick = function() {
-    console.log(button.value);
-    let nextPage = API_URL + '&' + button.value;
-    console.log(nextPage);
-    getMovies(nextPage);
-};
+pages.addEventListener('click', (e) => {
+    if (e.target && e.target.tagName == "BUTTON") {
+        let nextPage = API_URL + '&' + e.target.value;
+        getMovies(nextPage);
+    }
+
+});
 
 const form = document.getElementById("form");
 const search = document.getElementById("search");
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log(API_SEARCH + search.value + "&" + "page=2");
+    // console.log(API_SEARCH + search.value + "&" + "page=2");
     getMovies(API_SEARCH + search.value);
 });
 
