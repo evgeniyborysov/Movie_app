@@ -11,13 +11,17 @@ const test = 'http://api.themoviedb.org/3/movie/615457?api_key=1c72b657d9a077a9e
 
 const pages = document.querySelector('.pages');
 // const buttons = document.querySelectorAll('button');
+let isFlag = false;
+
+const form = document.getElementById("form");
+const search = document.getElementById("search");
 
 async function getMovies(url) {
     const response = await fetch(url);
     const data = await response.json();
 
     showMovies(data.results);
-    console.log(data.results);
+    // console.log(data.results);
 }
 
 function showMovies(movies) {
@@ -49,22 +53,25 @@ function showMovies(movies) {
 
 getMovies(API_URL);
 
-pages.addEventListener('click', (e) => {
-    if (e.target && e.target.tagName == "BUTTON") {
-        let nextPage = API_URL + '&' + e.target.value;
-        getMovies(nextPage);
-    }
-
-});
-
-const form = document.getElementById("form");
-const search = document.getElementById("search");
-
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     // console.log(API_SEARCH + search.value + "&" + "page=2");
     getMovies(API_SEARCH + search.value);
+    isFlag = true;
+    console.log(isFlag);
 });
 
+pages.addEventListener('click', (e) => {
+    if (isFlag == true) {
+        if (e.target && e.target.tagName == "BUTTON") {
+            getMovies(API_SEARCH + search.value + '&' + e.target.value);
+        }
+    } else if (e.target && e.target.tagName == "BUTTON") {
+        let nextPage = API_URL + '&' + e.target.value;
+        getMovies(nextPage);
+    }
+
+    // console.log(isFlag);
+});
 
 };
