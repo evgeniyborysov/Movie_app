@@ -9,6 +9,7 @@ body {
 
 main {
     margin: 0 auto;
+    padding: 10px;
     max-width: 1800px;
     display: flex;
     justify-content: center;
@@ -23,7 +24,20 @@ p {
 
 
 header {
-    background-color: aqua;
+    
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(99, 40, 114);
+}
+
+header a {
+    color: rgb(255, 255, 255);
+}
+
+.links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 #form {

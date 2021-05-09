@@ -9,6 +9,11 @@
 </head>
 <body>
     <header>
+        <div class="links">
+            <a id="home" href="#">Головна</a>
+            <a id="favorite" href="#">Вибране</a>
+        </div>
+
         <form id="form">
             <input type="text" id="search" class="search" placeholder="search">
         </form>
@@ -17,11 +22,8 @@
 
     </main>
     <div class="pages">
-        <button value="page=1">1</button>
-        <button value="page=2">2</button>
-        <button value="page=3">3</button>
-        <button value="page=4">4</button>
-        <button value="page=5">5</button>
+        <button value="page=">Назад</button>
+        <button id="btn-next" value="page=">Вперед</button>
     </div>
     <script src="app.js"></script>
 </body>
